@@ -1,2 +1,1 @@
-{ "run_list": [ "recipe[nginx]"] }
-
+{ "run_list": [ "recipe[emacs],"recipe[gems]","recipe[memcached]","recipe[nginx]","recipe[postfix]","recipe[postgres-client]","recipe[sinatra]","recipe[sphinx]"] }
