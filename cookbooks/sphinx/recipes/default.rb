@@ -2,6 +2,8 @@
 #source "http://sphinxsearch.com/files/sphinx-2.0.8-release.tar.gz"
 #end
 
+package "libmysqlclient-dev"
+
 bash "Extract and install sphinx" do
 user "root"
 cwd "/usr/local/src"
