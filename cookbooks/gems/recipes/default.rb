@@ -60,3 +60,9 @@ gem_package "bson_ext" do
   action :install
 end
 
+
+package "libxml2-dev"
+package "libxslt-dev"
+package "libsasl2-dev"
+
+
