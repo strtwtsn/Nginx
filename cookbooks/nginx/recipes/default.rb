@@ -9,7 +9,7 @@ bash "Extract and install nginx" do
 user "root"
 code <<-EOH
 cd /tmp
-wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
+wget https://github.com/strtwtsn/PPE_Web/raw/master/nginx_1.4.1-1_i386.deb
 dpkg -i nginx_1.4.1-1_i386.deb
 EOH
 end
@@ -72,8 +72,6 @@ user "root"
 code <<-EOH
 cd /etc/nginx/sites-enabled
 ln -s /etc/nginx/sites-available/ppe ppe
-wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
-dpkg -i nginx_1.4.1-1_i386.deb
 EOH
 end
 
@@ -84,6 +82,7 @@ template "passenger.conf" do
   owner "root"
   group "root"
 end
+
 
 bash "Tidy Up" do
 user "root"
