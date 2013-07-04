@@ -1,6 +1,6 @@
 #!/bin/bash
 apt-get -y update
-apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev git
+apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev git checkinstall
 cd /usr/local/src
 wget ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p195.tar.gz
 tar -xvzf ruby-2.0.0-p195.tar.gz
