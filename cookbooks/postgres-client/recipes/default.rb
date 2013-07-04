@@ -1,6 +1,6 @@
-#template "/etc/apt/sources.list.d/pgsql.list" do
-#source "pgsql.list.erb"
-#end
+template "/etc/apt/sources.list.d/pgsql.list" do
+source "pgsql.list.erb"
+end
 
 bash "Install postgresql client" do
 user "root"
