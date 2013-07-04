@@ -41,6 +41,7 @@ template "nginx.conf" do
   source "nginx.conf.erb"
 end
 
+
 directory "/etc/nginx/sites-available" do
 action :create
 end
@@ -58,6 +59,28 @@ directory "/etc/nginx/conf.d" do
 action :create
 end
 
+# Setup sites enabled file
+
+template "ppe" do
+  path "/etc/nginx/sites-available/ppe"
+  source "ppe.erb"
+end
+
+
+#bash "Enable PPE site" do
+#user "root"
+#code <<-EOH
+#cd /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/ppe ppe
+#wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
+#dpkg -i nginx_1.4.1-1_i386.deb
+#EOH
+#end
+
+
+
+
+
 
 #template "passenger.conf" do
 #  path "/etc/nginx/conf.d/passenger.conf"
@@ -65,6 +88,11 @@ end
 #  owner "root"
 #  group "root"
 #end
+
+
+
+
+
 
 bash "Tidy Up" do
 user "root"
