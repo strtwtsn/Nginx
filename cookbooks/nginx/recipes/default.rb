@@ -1,18 +1,18 @@
-#gem_package "passenger" do
-#action :install
-#end
+gem_package "passenger" do
+action :install
+end
 
-#package "libcurl4-openssl-dev"
+package "libcurl4-openssl-dev"
 
 
-#bash "Extract and install nginx" do
-#user "root"
-#code <<-EOH
-#cd /tmp
-#wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
-#dpkg -i nginx_1.4.1-1_i386.deb
-#EOH
-#end
+bash "Extract and install nginx" do
+user "root"
+code <<-EOH
+cd /tmp
+wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
+dpkg -i nginx_1.4.1-1_i386.deb
+EOH
+end
 
 template "/etc/init.d/nginx start script" do
 path "/etc/init.d/nginx"
@@ -67,32 +67,23 @@ template "ppe" do
 end
 
 
-#bash "Enable PPE site" do
-#user "root"
-#code <<-EOH
-#cd /etc/nginx/sites-enabled
+bash "Enable PPE site" do
+user "root"
+code <<-EOH
+cd /etc/nginx/sites-enabled
 ln -s /etc/nginx/sites-available/ppe ppe
-#wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
-#dpkg -i nginx_1.4.1-1_i386.deb
-#EOH
-#end
+wget https://github.com/strtwtsn/New_Nginx/raw/master/nginx_1.4.1-1_i386.deb
+dpkg -i nginx_1.4.1-1_i386.deb
+EOH
+end
 
 
-
-
-
-
-#template "passenger.conf" do
-#  path "/etc/nginx/conf.d/passenger.conf"
-#  source "passenger.conf.erb"
-#  owner "root"
-#  group "root"
-#end
-
-
-
-
-
+template "passenger.conf" do
+  path "/etc/nginx/conf.d/passenger.conf"
+  source "passenger.conf.erb"
+  owner "root"
+  group "root"
+end
 
 bash "Tidy Up" do
 user "root"
