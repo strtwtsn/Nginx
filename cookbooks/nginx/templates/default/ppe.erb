@@ -1,0 +1,42 @@
+server {
+  listen 80;
+  server_name protectedplanet.net;
+
+  access_log  /var/log/nginx/localhost.access.log;
+  root /home/ubuntu/www/ppe/current/public;
+  passenger_enabled on;
+  rails_env staging;
+
+  # serve static files without running more rewrite tests
+  if (-f $request_filename.html) {
+    rewrite (.*) $1.html break;
+  }
+
+  if (-f $request_filename) {
+    break;
+  }
+  
+  # redirect server error pages to the static page /50x.html
+  error_page   500 502 503 504  /50x.html;
+  location = /50x.html {
+      root   html;
+  }
+  
+  # disable site via capistrano (cap deploy:web:disable)
+  if (-f $document_root/system/maintenance.html) {
+     rewrite ^(.*)$ /system/maintenance.html break;
+  }
+  
+  # expires headers
+  location ~* \.(ico|css|js|gif|jp?g|png)(\?[0-9]+)?$ {
+           expires max;
+           break;
+  }
+
+  location ~ ^/(assets)/  {
+    root /home/ubuntu/www/ppe/current/public;
+    expires max;
+    add_header Cache-Control public;
+    # access_log /dev/null;
+  }
+} 
