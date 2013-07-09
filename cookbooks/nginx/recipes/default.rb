@@ -8,9 +8,13 @@ package "libcurl4-openssl-dev"
 bash "Extract and install nginx" do
 user "root"
 code <<-EOH
-cd /tmp
-wget https://github.com/strtwtsn/PPE_Web/raw/master/nginx_1.4.1-1_i386.deb
-dpkg -i nginx_1.4.1-1_i386.deb
+cd /var/chef/PPE_Web
+dpkg -i nginx_0.9.9-src-1_amd64.deb
+cd /etc/nginx/
+cp mime.types.default mime.types
+mkdir -p /usr/local/nginx/client_body_temp
+mkdir -p /var/log/nginx
+touch /var/log/nginx/access.log
 EOH
 end
 
