@@ -1,5 +1,6 @@
 gem_package "passenger" do
 action :install
+version "4.0.5"
 end
 
 package "libcurl4-openssl-dev"
